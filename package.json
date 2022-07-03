@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": "14.15.0",
+    "node": "16.13.0",
     "npm": "8.7.0"
   },
   "cacheDirectories": [
@@ -12,13 +12,12 @@
     "client/node_modules"
   ],
   "scripts": {
-    "start": "node index.js",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "server": "nodemon index.js",
     "client": "cd client && npm start",
-    "build": "cd client && npm run build",
-    "install-client": "cd client && npm install",
-    "heroku-postbuild": "NODE_ENV=production npm run install-client && npm run build"
+    "postinstall": "cd client && npm install",
+    "build": "NODE_ENV=production cd client/ && npm install && npm run build",
+    "start-server": "node index.js"
   },
   "keywords": [],
   "author": "",
